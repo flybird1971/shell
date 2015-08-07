@@ -111,11 +111,33 @@ bash相关配置,保存在  ~/.bashrc文件中，类似vim配置。
 	索引数组和关联数组；  类似php
 
 	数组定义
-	eg1 : varArr={1 2 3 4 5 6};    //与php不同，以空格进行分割
+	eg1 : varArr=(1 2 3 4 5 6);    //与php不同，以空格进行分割
 	eg2 : varArr[0]='value1';
 		  varArr[1]='value2';
 		  ........
 		  varArr[n]='valueN';
+
+	数组长度    length=${#varArr[@]};
+	数组指定值	val=${varArr[$index]};
+	整个数组  	arr=${varArr[@]};
+	删除指定值	unset varArr[$index];
+	删除数组    unset varArr[@];
+	数组分割	echo ${varArr[@]:offset:length};
+				newArr=(${varArr[@]:offset:length});
+				分割源数组，返回以空格分割的字符串，加（）可生产新数组
+
+	数组遍历     for  var in ${varArr[@]};do
+					echo $var;
+					..........
+				 done
+
+	关联数组    declare -A assionArr;    //声明assionArr关联数组
+	 			assionArr=([apple]='this apple' [orange]='this orange');
+				assionArr[banner]='this banner';
+
+				echo ${#assionArr[@]};   //打印关联数组长度
+				echo ${assionArr[@]};    //打印关联数组
+				echo ${!assionArr[@]};   //打印关联数组key
 
 
 	
