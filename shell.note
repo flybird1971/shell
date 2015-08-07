@@ -1,148 +1,148 @@
 2015年 08月 06日 星期四 13:20:05 CST
 ---------------------------------------------------------------------------
-shell 开始标记    #!/bin/bash        //指定Bash路径
+shell   开始标记    #!/bin/bash        //指定Bash路径
 
 shell脚本执行方式 ：
-	作为sh命令参数      eg : sh script.sh  ,不需要开始标记  #!/bin/bash
-	作为可执行文件      eg : ./script.sh   ,需要开始标记，并且要有执行权限
+    作为sh命令参数      eg : sh script.sh  ,不需要开始标记  #!/bin/bash
+    作为可执行文件      eg : ./script.sh   ,需要开始标记，并且要有执行权限
 
 bash相关配置,保存在  ~/.bashrc文件中，类似vim配置。
 
 在Bash中，每个命令或者命令序列以分号【;】或换行符【\n】分割。
-	eg : cmd1;cmd2
-	eg : cmd1
-	     cmd2
+    eg : cmd1;cmd2
+    eg : cmd1
+         cmd2
 使用 #  作为单行注释
 
 ---------------------------------------------------------------------------
 终端打印
-	echo printContents;     //类似java中println打印并换行
-	字符串 ""	对变量进行解释，并且要注意特殊字符，如 ！等
-	字符串 ''   不能对变量进行解释，类似php
-	不带引号    不推荐
-	printf		类似c
+    echo printContents;     //类似java中println打印并换行
+    字符串 ""      对变量进行解释，并且要注意特殊字符，如 ！等
+    字符串 ''      不能对变量进行解释，类似php
+    不带引号       不推荐
+    printf        类似c
 
-	彩色打印
-	echo -e  "\e[1;31m tees fonts color \e[0m";
-	echo -e  "\e[1;42m test background color \e[0m";
+    彩色打印
+    echo -e  "\e[1;31m tees fonts color \e[0m";
+    echo -e  "\e[1;42m test background color \e[0m";
 
 ---------------------------------------------------------------------------
 变量与环境变量
-	查看环境变量   env命令
-	查看指定进程环境变量	cat /proc/$PID/environ    //pgrep vim 查看vim PID
+    查看环境变量           env命令
+    查看指定进程环境变量    cat /proc/$PID/environ    //pgrep vim 查看vim PID
 
-	变量赋值	var='var copy' 	 //【=】左右两边无空格，表示赋值
-	变量相等    var = 'var copy' //【=】左右两边有空各，表示相等比较
-	
-	环境变量是未在当前进程中定义，而是从父进程中继承而来，
-	eg : HTTP_PROXY='http://192.169.12.12'
-		 export HTTP_PROXY    //设置环境变量HTTP_PROXY，类似select_editor
-	
-	获取变量字符长度  lenght=${#var};
+    变量赋值    var='var copy'      //【=】左右两边无空格，表示赋值
+    变量相等    var = 'var copy'    //【=】左右两边有空各，表示相等比较
+    
+    环境变量是未在当前进程中定义，而是从父进程中继承而来，
+    eg : HTTP_PROXY='http://192.169.12.12'
+         export HTTP_PROXY    //设置环境变量HTTP_PROXY，类似select_editor
+    
+    获取变量字符长度  lenght=${#var};
 
-	以下为系统变量实例：
-		检测是否是超级用户
-		if [ $UID -ne 0 ]; then
-			echo "Non root user,please run as root ";
-		else
-			echo "Root user";
-		fi
+    以下为系统变量实例：
+        检测是否是超级用户
+        if [ $UID -ne 0 ]; then
+            echo "Non root user,please run as root ";
+        else
+            echo "Root user";
+        fi
 
 ---------------------------------------------------------------------------
 数学运算
-	let命令	[]	 (())  expr  只支持整数运算
-	eg : let result=num1+num2;	let num1++;  let num1+=5;  //变量名之前不需要加【$】符号
-	eg : result=$[ num1 + num2 ];  result=$[ $num1 + 5 ];
-	eg : result=$(( num1 + 3 ))
-	eg : result=`expr 3 + 4`;  	result=$( expr $num + 5);
+    let命令    []     (())    expr  只支持整数运算
+    eg : let result=num1+num2;     let num1++;  let num1+=5;  //变量名之前不需要加【$】符号
+    eg : result=$[ num1 + num2 ];  result=$[ $num1 + 5 ];
+    eg : result=$(( num1 + 3 ))
+    eg : result=`expr 3 + 4`;      result=$( expr $num + 5);
 
-	bc 高级数学元素，支持浮点数
-	eg : echo "4 * 0.13" | bc;
-	eg : result='echo "$num * 1.3" | bc';
-	eg : echo "scale=2;3/8" | bc;
+    bc 高级数学元素，支持浮点数
+    eg : echo "4 * 0.13" | bc;
+    eg : result='echo "$num * 1.3" | bc';
+    eg : echo "scale=2;3/8" | bc;
 
-	bc 进制转换
-	eg : echo "obase=2;ibase=10;$num" | bc;
+    bc 进制转换
+    eg : echo "obase=2;ibase=10;$num" | bc;
 
-	eg : echo "obase=8;$num" | bc;
+    eg : echo "obase=8;$num" | bc;
 
 ---------------------------------------------------------------------------
 文件描述符和重定向
-	文件描述符是与文件输入，输出相关联的整数。
-	常见文件描述符 stdin[0]  stdout[1]  stderr[2]
-	可以讲某个文件描述符的内容重定向到另一个文件描述符中。
-	
-	eg : ls aaaaaa 2>>/tmp/error.log
-		 ls . 1>>/tmp/error.log
-		 ls ne 0>>/tmp/error.log
+    文件描述符是与文件输入，输出相关联的整数。
+    常见文件描述符 stdin[0]  stdout[1]  stderr[2]
+    可以讲某个文件描述符的内容重定向到另一个文件描述符中。
+    
+    eg : ls aaaaaa 2>>/tmp/error.log
+         ls . 1>>/tmp/error.log
+         ls ne 0>>/tmp/error.log
 
-	PS : 脚本中所有输出重定向到文件中
-	exec 1>>/tmp/log.log;
+    PS : 脚本中所有输出重定向到文件中
+    exec 1>>/tmp/log.log;
 
-	当命令或者脚本发生错误时，返回非0退出状态；正常exit 0;
-	/dev/null 特殊设备文件，所有丢到这个文件的信息都会被清除，通常称为位桶 或 黑洞
-	
-	PS : 输出重定向后，管道命令将不能接受到参数，
-		 可以使用  tee 将stdin中数据保留到副本中
-		 eg : ls -l | tee /tmp/out.log | wc -c
-		
-	文件重定向到命令，eg : ls -l < file
-	重定向脚本内部的文本块	//<<EOF  和 EOF之间的数据都会作为stdin数据
-		 eg : #!/bin/bash
-		  	  cat <<EOF  > log.txt    //将<<eof占位符 内容进行cat,并将结果重定向到log.txt
-			  log file hearder
-			  this is a test log file
-			  EOF
-	
-	自定义文件描述符
-		文件打开模式 【只读模式】，【截断模式】，【追加模式】
-		<操作符  将文件读取至stdin中
-		>操作符  截断模式的文件写入
-		>>操作符 追加模式的文件写入
-		
-		exec 3</tmp/log.log    //将/tmp/log.log文件读入3中
-		eg : cat <&3    
-		
-		exec 1>>/tmp/out.log  //将stdout文件描述符重写定义到/tmp/out.log
-		eg : ls;   //将不会在屏幕显示，而是写入out.log文件中
+    当命令或者脚本发生错误时，返回非0退出状态；正常exit 0;
+    /dev/null 特殊设备文件，所有丢到这个文件的信息都会被清除，通常称为位桶 或 黑洞
+    
+    PS : 输出重定向后，管道命令将不能接受到参数，
+         可以使用  tee 将stdin中数据保留到副本中
+         eg : ls -l | tee /tmp/out.log | wc -c
+        
+    文件重定向到命令，eg : ls -l < file
+    重定向脚本内部的文本块    //<<EOF  和 EOF之间的数据都会作为stdin数据
+         eg : #!/bin/bash
+              cat <<EOF  > log.txt    //将<<eof占位符 内容进行cat,并将结果重定向到log.txt
+              log file hearder
+              this is a test log file
+              EOF
+    
+    自定义文件描述符
+        文件打开模式 【只读模式】，【截断模式】，【追加模式】
+        <操作符  将文件读取至stdin中
+        >操作符  截断模式的文件写入
+        >>操作符 追加模式的文件写入
+        
+        exec 3</tmp/log.log    //将/tmp/log.log文件读入3中
+        eg : cat <&3    
+        
+        exec 1>>/tmp/out.log  //将stdout文件描述符重写定义到/tmp/out.log
+        eg : ls;   //将不会在屏幕显示，而是写入out.log文件中
 
 ---------------------------------------------------------------------------
 数组和关联数组
-	索引数组和关联数组；  类似php
+    索引数组和关联数组；  类似php
 
-	数组定义
-	eg1 : varArr=(1 2 3 4 5 6);    //与php不同，以空格进行分割
-	eg2 : varArr[0]='value1';
-		  varArr[1]='value2';
-		  ........
-		  varArr[n]='valueN';
+    数组定义
+    eg1 : varArr=(1 2 3 4 5 6);    //与php不同，以空格进行分割
+    eg2 : varArr[0]='value1';
+          varArr[1]='value2';
+          ........
+          varArr[n]='valueN';
 
-	数组长度    length=${#varArr[@]};
-	数组指定值	val=${varArr[$index]};
-	整个数组  	arr=${varArr[@]};
-	删除指定值	unset varArr[$index];
-	删除数组    unset varArr[@];
-	数组分割	echo ${varArr[@]:offset:length};
-				newArr=(${varArr[@]:offset:length});
-				分割源数组，返回以空格分割的字符串，加（）可生产新数组
+    数组长度      length=${#varArr[@]};
+    数组指定值    val=${varArr[$index]};
+    整个数组      arr=${varArr[@]};
+    删除指定值    unset varArr[$index];
+    删除数组      unset varArr[@];
+    数组分割      echo ${varArr[@]:offset:length};
+                newArr=(${varArr[@]:offset:length});
+                分割源数组，返回以空格分割的字符串，加（）可生产新数组
 
-	数组遍历     for  var in ${varArr[@]};do
-					echo $var;
-					..........
-				 done
+    数组遍历     for  var in ${varArr[@]};do
+                    echo $var;
+                    ..........
+                 done
 
-	关联数组    declare -A assionArr;    //声明assionArr关联数组
-	 			assionArr=([apple]='this apple' [orange]='this orange');
-				assionArr[banner]='this banner';
+    关联数组    declare -A assionArr;    //声明assionArr关联数组
+                 assionArr=([apple]='this apple' [orange]='this orange');
+                assionArr[banner]='this banner';
 
-				echo ${#assionArr[@]};   //打印关联数组长度
-				echo ${assionArr[@]};    //打印关联数组
-				echo ${!assionArr[@]};   //打印关联数组key
+                echo ${#assionArr[@]};   //打印关联数组长度
+                echo ${assionArr[@]};    //打印关联数组
+                echo ${!assionArr[@]};   //打印关联数组key
 
 ---------------------------------------------------------------------------
 别名的使用
-	
-	
+    
+    
 
 
 
