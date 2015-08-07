@@ -141,7 +141,9 @@ bash相关配置,保存在  ~/.bashrc文件中，类似vim配置。
 
 ---------------------------------------------------------------------------
 别名的使用
-    
+    alias name=' command seq';      //只在本bash中有效
+    echo 'alias cmd="command seq"' >> ~/.bashrc  //导入bash配置文件,对所有有效
+    alias rm='cp $@ ~/backup; rm $@';  //函数
     
 
 
