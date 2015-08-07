@@ -145,9 +145,26 @@ bash相关配置,保存在  ~/.bashrc文件中，类似vim配置。
     echo 'alias cmd="command seq"' >> ~/.bashrc  //导入bash配置文件,对所有有效
     alias rm='cp $@ ~/backup; rm $@';  //函数
     
+---------------------------------------------------------------------------
+获取终端信息
+    tput & stty
+    tput cols   //获取终端宽
+    tput lines  //获取终端高
+    stty size   //获取终端宽高
+
+    tput longname   //获取终端名称
+    tput setb no    //设置终端背景色 no【0-7】
+    tput cup x y    //设置光标位置
+    tput bold       //设置字体bold
+
+---------------------------------------------------------------------------
+获取,设置日期及延时    
+    date "+%Y-%m-%d %H-%M-%S %N";
+    date --date "Jan 20 2001" +%s;
+    sleep times;
 
 
 
 --------------------------------------------------------------------------
-linux_shell  page33   1.6.2
+linux_shell  page36   1.8.1
 
