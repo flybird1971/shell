@@ -208,8 +208,38 @@ shell函数
 			eg : read -d ">" input; 输入碰到定界符delim时，输入完成
 	read -st 5 -d ">" input　混合使用选项
 
+--------------------------------------------------------------------------
+定界符和遍历
+	IFS  internal field separator 定界符
+	修改默认定界符	
+		eg : oldIFS=$IFS;
+			 todo .....
+			 IFS=$oldIFS;
+	PS : 定界符对数组定义初始化无影响，对遍历有影响，特别时字符串遍历
 
+	for in   //list can be a string or a sequence
+		eg : for item in list;do
+				todo......
+			 done
 
+	    ps : list 可以是数组　or 字符串(按照定界符进行分割) or {a b c d}列表
+	
+	like c for
+		eg : for (( i=0; i<10; i++)){
+				todo....
+			 }
+
+	while循环
+		eg : while condition;do
+				todo....
+			 done
+	
+	until循环
+		eg : until conditon;do
+				todo....
+			 done
+
+	
 --------------------------------------------------------------------------
 linux_shell  page36   1.8.1
 

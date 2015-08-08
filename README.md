@@ -18,3 +18,10 @@ passwd.sh       关于密码输入，隐藏脚本
 
 date.sh         关于日期和延时脚本【date】【sleep】
 
+debug.sh        关于shell脚本调试小技巧
+
+pipe.sh			关于管道命令及如何从键盘或者stdin中读入数据
+
+function.sh     关于shell函数定义及使用
+
+
