@@ -51,5 +51,6 @@ function recurise(){
 }
 
 recurise arg1 arg2 arg3 arg4 arg5;
+echo "recuise function return code : ${?} ";
 export -f recurise;
-bash /datum/shell/date.sh
+#bash /datum/shell/date.sh

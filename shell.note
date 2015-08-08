@@ -184,13 +184,31 @@ shell函数
 				$n	 #访问第n个参数
 				$@	 #以列表的方式打印所有参数
 				$*	 #类似$@，但参数被作为单个实体
-	返回值		#return 0;
+	返回值		#return 0;　//可以使用　$? 获取函数或命令返回值
 
 	函数递归　　function funName(){ 
 					statement;
 					funName;
 					statement;
 				}
+	导入函数　　export -f funName;  #函数作用域将扩展到子进程
+	
+-------------------------------------------------------------------------
+管道命令
+	子shell　　( cd /datum; ls )
+	反引用　　 `cd /datum; ls `
+	从键盘或者stdin中读取数据 
+	read -n charNumber tmpSaveVariable  
+			eg : read -n 12 input;  输入的前12个字符将存入input变量,或者回车完成输入
+	read -s input 输入的字符不回显.类似输入密码，回车完成输入
+	read -p tipMsg input 回显tipMsg，回车完成输入
+	read -t time input
+			eg : read -t 5 input 5秒内的输入存入input变量
+	read -d delim input 
+			eg : read -d ">" input; 输入碰到定界符delim时，输入完成
+	read -st 5 -d ">" input　混合使用选项
+
+
 
 --------------------------------------------------------------------------
 linux_shell  page36   1.8.1
