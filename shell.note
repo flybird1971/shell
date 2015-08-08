@@ -239,7 +239,39 @@ shell函数
 				todo....
 			 done
 
-	
+--------------------------------------------------------------------------
+比较运算,整数比较和字符比较
+	intger compare
+	   [ int1 -eq int2 ]
+	   [ int1 -nq int2 ]
+	   [ int1 -gt int2 ]
+       [ int1 -lt int2 ]
+	   [ int1 -ge int2 ]
+	   [ int1 -le int2 ]
+
+	file compare    
+	  PS : linux 中目录也是文件
+	  [ -f $file_var ]  //目录或文件名
+	  [ -x $file_var ]　//文件是否可执行
+	  [ -d $file_var ]  //是否是目录
+	  [ -e $file_var ]  //是否存在
+	  [ -c $file_var ]  //是否是字符设备文件
+	  [ -b $file_var ]　//是否是块设备文件
+	  [ -L $file_var ]　//是否是链接符号
+	  [ -w $file_var ]  //是否可写
+	  [ -r $file_var ]  //是否可读
+
+	string compare
+	   [[ str = str ]]
+	   [[ str == str ]]
+	   [[ str != str ]]
+	   [[ str > str ]]
+	   [[ str < str ]]
+	   [[ -z str ]]      //空字符串
+	   [[ -n str ]]　　　//非空字符串
+
+
+
 --------------------------------------------------------------------------
 linux_shell  page36   1.8.1
 
