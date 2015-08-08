@@ -1,6 +1,6 @@
 2015年 08月 06日 星期四 13:20:05 CST
 ---------------------------------------------------------------------------
-shell   开始标记    #!/bin/bash        //指定Bash路径
+shell   开始标记    #!/bin/bash        #指定Bash路径
 
 shell脚本执行方式 ：
     作为sh命令参数      eg : sh script.sh  ,不需要开始标记  #!/bin/bash
@@ -16,7 +16,7 @@ bash相关配置,保存在  ~/.bashrc文件中，类似vim配置。
 
 ---------------------------------------------------------------------------
 终端打印
-    echo printContents;     //类似java中println打印并换行
+    echo printContents;     #类似java中println打印并换行
     字符串 ""      对变量进行解释，并且要注意特殊字符，如 ！等
     字符串 ''      不能对变量进行解释，类似php
     不带引号       不推荐
@@ -29,14 +29,14 @@ bash相关配置,保存在  ~/.bashrc文件中，类似vim配置。
 ---------------------------------------------------------------------------
 变量与环境变量
     查看环境变量           env命令
-    查看指定进程环境变量    cat /proc/$PID/environ    //pgrep vim 查看vim PID
+    查看指定进程环境变量    cat /proc/$PID/environ    #pgrep vim 查看vim PID
 
-    变量赋值    var='var copy'      //【=】左右两边无空格，表示赋值
-    变量相等    var = 'var copy'    //【=】左右两边有空各，表示相等比较
+    变量赋值    var='var copy'      #【=】左右两边无空格，表示赋值
+    变量相等    var = 'var copy'    #【=】左右两边有空各，表示相等比较
     
     环境变量是未在当前进程中定义，而是从父进程中继承而来，
-    eg : HTTP_PROXY='http://192.169.12.12'
-         export HTTP_PROXY    //设置环境变量HTTP_PROXY，类似select_editor
+    eg : HTTP_PROXY='http:#192.169.12.12'
+         export HTTP_PROXY    #设置环境变量HTTP_PROXY，类似select_editor
     
     获取变量字符长度  lenght=${#var};
 
@@ -51,7 +51,7 @@ bash相关配置,保存在  ~/.bashrc文件中，类似vim配置。
 ---------------------------------------------------------------------------
 数学运算
     let命令    []     (())    expr  只支持整数运算
-    eg : let result=num1+num2;     let num1++;  let num1+=5;  //变量名之前不需要加【$】符号
+    eg : let result=num1+num2;     let num1++;  let num1+=5;  #变量名之前不需要加【$】符号
     eg : result=$[ num1 + num2 ];  result=$[ $num1 + 5 ];
     eg : result=$(( num1 + 3 ))
     eg : result=`expr 3 + 4`;      result=$( expr $num + 5);
@@ -87,9 +87,9 @@ bash相关配置,保存在  ~/.bashrc文件中，类似vim配置。
          eg : ls -l | tee /tmp/out.log | wc -c
         
     文件重定向到命令，eg : ls -l < file
-    重定向脚本内部的文本块    //<<EOF  和 EOF之间的数据都会作为stdin数据
+    重定向脚本内部的文本块    #<<EOF  和 EOF之间的数据都会作为stdin数据
          eg : #!/bin/bash
-              cat <<EOF  > log.txt    //将<<eof占位符 内容进行cat,并将结果重定向到log.txt
+              cat <<EOF  > log.txt    #将<<eof占位符 内容进行cat,并将结果重定向到log.txt
               log file hearder
               this is a test log file
               EOF
@@ -100,18 +100,18 @@ bash相关配置,保存在  ~/.bashrc文件中，类似vim配置。
         >操作符  截断模式的文件写入
         >>操作符 追加模式的文件写入
         
-        exec 3</tmp/log.log    //将/tmp/log.log文件读入3中
+        exec 3</tmp/log.log    #将/tmp/log.log文件读入3中
         eg : cat <&3    
         
-        exec 1>>/tmp/out.log  //将stdout文件描述符重写定义到/tmp/out.log
-        eg : ls;   //将不会在屏幕显示，而是写入out.log文件中
+        exec 1>>/tmp/out.log  #将stdout文件描述符重写定义到/tmp/out.log
+        eg : ls;   #将不会在屏幕显示，而是写入out.log文件中
 
 ---------------------------------------------------------------------------
 数组和关联数组
     索引数组和关联数组；  类似php
 
     数组定义
-    eg1 : varArr=(1 2 3 4 5 6);    //与php不同，以空格进行分割
+    eg1 : varArr=(1 2 3 4 5 6);    #与php不同，以空格进行分割
     eg2 : varArr[0]='value1';
           varArr[1]='value2';
           ........
@@ -131,31 +131,31 @@ bash相关配置,保存在  ~/.bashrc文件中，类似vim配置。
                     ..........
                  done
 
-    关联数组    declare -A assionArr;    //声明assionArr关联数组
+    关联数组    declare -A assionArr;    #声明assionArr关联数组
                  assionArr=([apple]='this apple' [orange]='this orange');
                 assionArr[banner]='this banner';
 
-                echo ${#assionArr[@]};   //打印关联数组长度
-                echo ${assionArr[@]};    //打印关联数组
-                echo ${!assionArr[@]};   //打印关联数组key
+                echo ${#assionArr[@]};   #打印关联数组长度
+                echo ${assionArr[@]};    #打印关联数组
+                echo ${!assionArr[@]};   #打印关联数组key
 
 ---------------------------------------------------------------------------
 别名的使用
-    alias name=' command seq';      //只在本bash中有效
-    echo 'alias cmd="command seq"' >> ~/.bashrc  //导入bash配置文件,对所有有效
-    alias rm='cp $@ ~/backup; rm $@';  //函数
+    alias name=' command seq';      #只在本bash中有效
+    echo 'alias cmd="command seq"' >> ~/.bashrc  #导入bash配置文件,对所有有效
+    alias rm='cp $@ ~/backup; rm $@';  #函数
     
 ---------------------------------------------------------------------------
 获取终端信息
     tput & stty
-    tput cols   //获取终端宽
-    tput lines  //获取终端高
-    stty size   //获取终端宽高
+    tput cols   #获取终端宽
+    tput lines  #获取终端高
+    stty size   #获取终端宽高
 
-    tput longname   //获取终端名称
-    tput setb no    //设置终端背景色 no【0-7】
-    tput cup x y    //设置光标位置
-    tput bold       //设置字体bold
+    tput longname   #获取终端名称
+    tput setb no    #设置终端背景色 no【0-7】
+    tput cup x y    #设置光标位置
+    tput bold       #设置字体bold
 
 ---------------------------------------------------------------------------
 获取,设置日期及延时    
@@ -165,16 +165,32 @@ bash相关配置,保存在  ~/.bashrc文件中，类似vim配置。
 
 --------------------------------------------------------------------------
 脚本调试
-	bash -x debug.sh  //追踪shell脚本每一条语句
-	set -x   //开启调试
-	set +x　 //禁止调试     配合使用，只调试某段脚本
-	set -v   //显示输入 
-	set +v   //禁止显示输入 配合使用，只显示某段脚本
+	bash -x debug.sh  #追踪shell脚本每一条语句
+	set -x   #开启调试
+	set +x　 #禁止调试     配合使用，只调试某段脚本
+	set -v   #显示输入 
+	set +v   #禁止显示输入 配合使用，只显示某段脚本
 	自定义调试函数
 
 --------------------------------------------------------------------------
 shell函数
-	
+	函数定义	function funName(){ statements; }
+				funName(){ statements; }
+	函数调用	$funName;
+				$funName arg1 arg2;	#传参数
+	参数访问　　$1   #访问参数一
+				$2	 #访问第二个参数
+				.......
+				$n	 #访问第n个参数
+				$@	 #以列表的方式打印所有参数
+				$*	 #类似$@，但参数被作为单个实体
+	返回值		#return 0;
+
+	函数递归　　function funName(){ 
+					statement;
+					funName;
+					statement;
+				}
 
 --------------------------------------------------------------------------
 linux_shell  page36   1.8.1

@@ -1,4 +1,8 @@
 #!/bin/bash
+
+time=$(date +%s);
+echo $time;
+recurise date1 date2 date3 $time;
 start=$(date +%s);
 
 echo -n 'CountDown:';
