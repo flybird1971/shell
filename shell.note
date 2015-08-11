@@ -325,5 +325,24 @@ shell函数
                     eg : find . \( -name ".git" prune \) -o \( -type f -print \)
 
 --------------------------------------------------------------------------
-linux_shell  page62   2.5.1
+xargs
+    xagrs  以标准输入作为主要源数据流，使用stdin并通过提供命令行参数来执行其他命令；
+           ps ： 解决不能从stdin中介绍输入的命令
+           
+           将多行数据转为单行       cat /tmp/log.log | xargs
+           将单行数据分割为多行     cat /tmp/log.log | xargs -n 3
+           使用指定定界符进行分割   echo -n "1123XabcX345Xdef" | xargs -d X
+           循环 eg : ls | xargs -I {} cat -n {}
+
+           PS : 子shell较好解决问题 eg : cat -n `ls`
+           find . \( -name ".git" -prune \) -o \( -type f -print0 \) | xargs -0 cat -n 
+           ls | ( $args=""; while read arg;do args="$args $arg"; done; cat -n $args )
+
+
+--------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------
+linux_shell  page67   2.6.1
 
