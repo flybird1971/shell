@@ -24,4 +24,12 @@ pipe.sh			关于管道命令及如何从键盘或者stdin中读入数据
 
 function.sh     关于shell函数定义及使用
 
+compare.sh      关于整数，字符串比较以及文件是否存在，可以执行等判断
 
+traverse.sh     关于shell遍历操作简介
+
+find.sh         关于find命令使用介绍
+
+mysql.sh        快速登陆mysql脚本
+
+specialVar.sh   关于shell特殊变量介绍
