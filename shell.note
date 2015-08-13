@@ -271,6 +271,33 @@ shell函数
 	   [[ -n str ]]　　　//非空字符串
 
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+----------------------------- SECOND PART --------------------------------
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+cat concateate  //拼接
+	cat file1 file2 ... filen  //拼接所有文件内容并显示
+	cat -s file1	        //压缩多个空格符为一个
+	cat file | tr -s '\n'   
+    cat -T file     //将制表符显示为 ^I
+	cat -n file     //显示行号
+	cat -b file     //显示非空白行行号
+
+终端录制与回放
+	script -t 2>/tmp/time.log -a /tmp/out.log   //开始录制,exit结束录制
+	scriptreplay /tmp/time.log /tmp/out.log     //开始回放
+
+广播
+	mkfifo  fileName; [terminal one]
+	cat fileName; [terminal two]
+	[termianl onw ]
+	script -f fileName    //flush to file
+	todo.......
+	exit         //end script
+
+--------------------------------------------------------------------------
+
+
+
 
 --------------------------------------------------------------------------
 linux_shell  page36   1.8.1
